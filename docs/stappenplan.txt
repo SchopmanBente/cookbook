@@ -1,0 +1,18 @@
+1. Klassendiagram maken
+   - project maken 
+   - Django installeren
+2. start  django-project met cmd django-admin startproject cookbook
+3. start django-app met cmd python manage.py startapp recipes
+4. basic security maatregelen implementeren (.env en admin honeypot en andere naam admin) 
+5. class Measure met unit tests
+6. class Time met unit tests
+7. class Necessity met unit tests
+8. class Ingredient met unit tests
+9. class Kitchen met unit tests
+10. class Recipe met unit tests
+11. Listview Recipe
+12. detailview Recipe
+
+
+
+unit tests: simple, common, error en boundary 
