@@ -1,0 +1,7 @@
+b&b_cookbook_v2/cookbook/.env
+b&b_cookbook_v2/cookbook/__pycache__/*
+b&b_cookbook_v2/recipes/migrations/*
+b&b_cookbook_v2/recipes/__pycache__/*
+b&b_cookbook_v2/db.sqlite3
+b&b_cookbook_v2/docs/base.txt
+b&b_cookbook_v2/.idea/
