@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django_otp.admin import OTPAdminSite
+
+admin.site.__class__ = OTPAdminSite
 
 urlpatterns = [
     path('', include('recipes.urls')),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('change_cookbook/', admin.site.urls),
 ]
