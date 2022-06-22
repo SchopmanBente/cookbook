@@ -1,0 +1,13 @@
+{% extends 'recipes/base.html' %}
+{% load static %}
+{% block content %}
+    <h1>Recept: {{ detail|title }}</h1>
+    <ul>
+        <li> Keuken: {{ detail.kitchen }}</li>
+        <li>Tijd: {{ detail.time.hours  }} uren: {{ detail.time.minutes }} minuten </li>
+        <li>Aantal personen: {{ detail.number_of_persons }} </li>
+    </ul>
+    <ul id="ingredients">
+
+    </ul>
+{% endblock %}
