@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'axes',
     'django_otp',
     'django_otp.plugins.otp_totp',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [

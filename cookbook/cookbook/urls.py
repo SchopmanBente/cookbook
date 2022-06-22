@@ -21,5 +21,6 @@ admin.site.__class__ = OTPAdminSite
 
 urlpatterns = [
     path('', include('recipes.urls')),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('change_cookbook/', admin.site.urls),
 ]
