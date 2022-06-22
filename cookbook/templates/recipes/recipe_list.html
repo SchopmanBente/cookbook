@@ -4,7 +4,7 @@
     <h2>Recepten</h2>
     <ul>
         {% for recipe in object_list %}
-            <li>{{ recipe.name }} {{ recipe.kitchen}}</li>
+            <li><a href="{% url 'recipes:detail'  recipe.pk %}">{{ recipe.name }} {{ recipe.kitchen}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
