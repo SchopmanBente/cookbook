@@ -1,6 +1,11 @@
 {% extends 'recipes/base.html' %}
 {% load static %}
 {% block content %}
+    <nav>
+        <ul>
+            <li> <a href="{% url 'recipes:index' %}">Home</a></li>
+        </ul>
+    </nav>
     <h1>Recept: {{ name }}</h1>
     <h2>Informatie</h2>
     <ul>
