@@ -1,13 +1,25 @@
 {% extends 'recipes/base.html' %}
 {% load static %}
 {% block content %}
-    <h1>Recept: {{ detail|title }}</h1>
+    <h1>Recept: {{ name }}</h1>
+    <h2>Informatie</h2>
     <ul>
-        <li> Keuken: {{ detail.kitchen }}</li>
-        <li>Tijd: {{ detail.time.hours  }} uren: {{ detail.time.minutes }} minuten </li>
-        <li>Aantal personen: {{ detail.number_of_persons }} </li>
+        <li> Keuken: {{ kitchen }}</li>
+        <li>Tijd: {{ time.hours  }} uren: {{ time.minutes }} minuten </li>
+        <li>Aantal personen: {{ number_of_persons }} </li>
     </ul>
+   <h2>Ingrediënten</h2>
     <ul id="ingredients">
-
+     {% for  ingredient in ingredients %}
+        <li>{{ingredient.quantity}} {{ingredient.unit}} {{ ingredient.ingredient }}</li>
+    {% endfor %}
     </ul>
+   <h2>Benodigheden</h2>
+   <ul id="necessities">
+       {% for necessity in necessities %}
+       <li>{{necessity.quantity}}  {{ necessity.unit }} {{ necessity.necessity }} </li>
+       {% endfor %}
+   </ul>
+   <h2> Bereidingswijze</h2>
+   <p>{{ preparation }}</p>
 {% endblock %}
