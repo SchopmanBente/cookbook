@@ -2,6 +2,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
+
+
 class Quantity(models.Model):
     quantity = models.PositiveIntegerField()
 
@@ -19,7 +22,7 @@ class Time(models.Model):
     minutes = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(60)])
 
     def __str__(self):
-        return str(self.hours) + str(self.minutes)
+        return  "Uren:{hours} Minuten: {minutes}".format(hours=str(self.hours), minutes=str(self.minutes))
 
 class Necessity(models.Model):
     necessity_name = models.CharField(max_length=250)
@@ -40,7 +43,7 @@ class QuantityUnitIngredient(models.Model):
     unit = models.ForeignKey(Unit,on_delete=models.CASCADE)
 
     def __str__(self):
-      return "{quantity}{unit}{ingredient}".format(ingredient=self.ingredient,quantity=self.quantity,unit=self.unit,delimeter=" ")
+      return "{quantity}  {unit} {ingredient}".format(ingredient=self.ingredient,quantity=self.quantity,unit=self.unit)
 
 
 class QuantityUnitNecessity(models.Model):
@@ -49,7 +52,8 @@ class QuantityUnitNecessity(models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{quantity}{unit}{necessity}".format(necessity=self.necessity,quantity=self.quantity, unit=self.unit, delimeter=" ")
+        return "{quantity}  {unit}  {necessity}".format(necessity=self.necessity, quantity=self.quantity,
+                                                        unit=self.unit)
 class Kitchen(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField(max_length=750)
@@ -73,3 +77,6 @@ class Recipe(models.Model):
         # can use the below method also
         queryset = self.__class__.objects.all()
         return queryset
+
+    def get_absolute_url(self):
+        return reverse("recipes.detail", kwargs={"id": self.id})
