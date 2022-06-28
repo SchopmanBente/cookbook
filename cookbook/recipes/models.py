@@ -39,8 +39,8 @@ class Ingredient(models.Model):
 
 class QuantityUnitIngredient(models.Model):
     ingredient = models.OneToOneField(Ingredient,on_delete=models.CASCADE)
-    quantity = models.OneToOneField(Quantity,on_delete=models.CASCADE,unique=True)
-    unit = models.OneToOneField(Unit,on_delete=models.CASCADE,unique=True)
+    quantity = models.OneToOneField(Quantity,on_delete=models.CASCADE)
+    unit = models.OneToOneField(Unit,on_delete=models.CASCADE)
 
     def __str__(self):
       return "{quantity}  {unit} {ingredient}".format(ingredient=self.ingredient,quantity=self.quantity,unit=self.unit)
