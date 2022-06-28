@@ -6,13 +6,13 @@ from django.urls import reverse
 
 
 class Quantity(models.Model):
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(unique=True)
 
     def __str__(self):
         return str(self.quantity)
 
 class Unit(models.Model):
-    unit = models.CharField(max_length=150)
+    unit = models.CharField(max_length=150,unique=True)
 
     def __str__(self):
         return str(self.unit)
@@ -25,44 +25,44 @@ class Time(models.Model):
         return  "Uren:{hours} Minuten: {minutes}".format(hours=str(self.hours), minutes=str(self.minutes))
 
 class Necessity(models.Model):
-    necessity_name = models.CharField(max_length=250)
+    necessity_name = models.CharField(max_length=250,unique=True)
 
     def __str__(self):
         return self.necessity_name
 
 
 class Ingredient(models.Model):
-    ingredient_name = models.CharField(max_length=250)
+    ingredient_name = models.CharField(max_length=250,unique=True)
 
     def __str__(self):
         return  self.ingredient_name
 
 class QuantityUnitIngredient(models.Model):
-    ingredient = models.ForeignKey(Ingredient,on_delete=models.CASCADE)
-    quantity = models.ForeignKey(Quantity,on_delete=models.CASCADE)
-    unit = models.ForeignKey(Unit,on_delete=models.CASCADE)
+    ingredient = models.OneToOneField(Ingredient,on_delete=models.CASCADE)
+    quantity = models.OneToOneField(Quantity,on_delete=models.CASCADE,unique=True)
+    unit = models.OneToOneField(Unit,on_delete=models.CASCADE,unique=True)
 
     def __str__(self):
       return "{quantity}  {unit} {ingredient}".format(ingredient=self.ingredient,quantity=self.quantity,unit=self.unit)
 
 
 class QuantityUnitNecessity(models.Model):
-    necessity = models.ForeignKey(Necessity,on_delete=models.CASCADE)
-    quantity = models.ForeignKey(Quantity, on_delete=models.CASCADE)
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+    necessity = models.OneToOneField(Necessity,on_delete=models.CASCADE)
+    quantity = models.OneToOneField(Quantity, on_delete=models.CASCADE)
+    unit = models.OneToOneField(Unit, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{quantity}  {unit}  {necessity}".format(necessity=self.necessity, quantity=self.quantity,
                                                         unit=self.unit)
 class Kitchen(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250,unique=True)
     description = models.TextField(max_length=750)
 
     def __str__(self):
         return self.name
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250,unique=True)
     time = models.ForeignKey(Time, on_delete=models.CASCADE)
     number_of_persons = models.IntegerField()
     kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE)
