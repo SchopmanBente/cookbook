@@ -12,17 +12,16 @@ class Quantity(models.Model):
         return str(self.quantity)
 
 class Unit(models.Model):
-    unit = models.CharField(max_length=150,unique=True)
+    unit = models.CharField(max_length=50)
 
     def __str__(self):
         return str(self.unit)
 
 class Time(models.Model):
-    hours = models.IntegerField(default=0, validators=[MinValueValidator(0),  MaxValueValidator(24)])
-    minutes = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(60)])
+    time = models.TimeField(auto_now=False, auto_now_add=False,unique=True)
 
     def __str__(self):
-        return  "Uren:{hours} Minuten: {minutes}".format(hours=str(self.hours), minutes=str(self.minutes))
+        return str(self.time)
 
 class Necessity(models.Model):
     necessity_name = models.CharField(max_length=250,unique=True)
@@ -38,18 +37,18 @@ class Ingredient(models.Model):
         return  self.ingredient_name
 
 class QuantityUnitIngredient(models.Model):
-    ingredient = models.OneToOneField(Ingredient,on_delete=models.CASCADE)
-    quantity = models.OneToOneField(Quantity,on_delete=models.CASCADE)
-    unit = models.OneToOneField(Unit,on_delete=models.CASCADE)
+    ingredient = models.ForeignKey(Ingredient,on_delete=models.CASCADE)
+    quantity = models.ForeignKey(Quantity,on_delete=models.CASCADE)
+    unit = models.ForeignKey(Unit,on_delete=models.CASCADE)
 
     def __str__(self):
       return "{quantity}  {unit} {ingredient}".format(ingredient=self.ingredient,quantity=self.quantity,unit=self.unit)
 
 
 class QuantityUnitNecessity(models.Model):
-    necessity = models.OneToOneField(Necessity,on_delete=models.CASCADE)
-    quantity = models.OneToOneField(Quantity, on_delete=models.CASCADE)
-    unit = models.OneToOneField(Unit, on_delete=models.CASCADE)
+    necessity = models.ForeignKey(Necessity,on_delete=models.CASCADE)
+    quantity = models.ForeignKey(Quantity, on_delete=models.CASCADE)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{quantity}  {unit}  {necessity}".format(necessity=self.necessity, quantity=self.quantity,
