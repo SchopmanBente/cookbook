@@ -6,7 +6,7 @@ from django.urls import reverse
 
 
 class Quantity(models.Model):
-    quantity = models.PositiveIntegerField(unique=True)
+    quantity = models.PositiveIntegerField()
 
     def __str__(self):
         return str(self.quantity)
@@ -18,10 +18,11 @@ class Unit(models.Model):
         return str(self.unit)
 
 class Time(models.Model):
-    time = models.TimeField(auto_now=False, auto_now_add=False,unique=True)
+    hours = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(24)])
+    minutes = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(60)])
 
     def __str__(self):
-        return str(self.time)
+      return "Uren:{hours} Minuten: {minutes}".format(hours=str(self.hours), minutes=str(self.minutes))
 
 class Necessity(models.Model):
     necessity_name = models.CharField(max_length=250,unique=True)
