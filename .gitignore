@@ -12,5 +12,5 @@ cookbook/cookbook/__pycache__/*
 cookbook/recipes/__pycache__/*
 cookbook/recipes/migrations/*
 cookbook/recipes/tests/__pycache__/*
-
+cookbook/*.pem
 
