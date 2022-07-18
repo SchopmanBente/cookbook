@@ -131,7 +131,6 @@ class RecipeModelTestCase(TestCase):
     def test_recipe_has_necessities(self):
         self.assertEqual(self.recipe.necessities.count(),1)
 
-
     def test_recipe_prints_the_same_string(self):
         self.assertTrue(id(self.recipe.__str__()), id(self.recipe.name))
 
