@@ -22,6 +22,7 @@ admin.site.__class__ = OTPAdminSite
 
 urlpatterns = [
     path('', include('recipes.urls')),
+    path('recipes/', include('recipes.urls')),
     path('change_cookbook/', admin.site.urls),
 ]
 urlpatterns += staticfiles_urlpatterns()
