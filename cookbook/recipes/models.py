@@ -12,27 +12,27 @@ class Quantity(models.Model):
         return str(self.quantity)
 
 class Unit(models.Model):
-    unit = models.CharField(max_length=150)
+    unit = models.CharField(max_length=50)
 
     def __str__(self):
         return str(self.unit)
 
 class Time(models.Model):
-    hours = models.IntegerField(default=0, validators=[MinValueValidator(0),  MaxValueValidator(24)])
+    hours = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(24)])
     minutes = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(60)])
 
     def __str__(self):
-        return  "Uren:{hours} Minuten: {minutes}".format(hours=str(self.hours), minutes=str(self.minutes))
+      return "Uren:{hours} Minuten: {minutes}".format(hours=str(self.hours), minutes=str(self.minutes))
 
 class Necessity(models.Model):
-    necessity_name = models.CharField(max_length=250)
+    necessity_name = models.CharField(max_length=250,unique=True)
 
     def __str__(self):
         return self.necessity_name
 
 
 class Ingredient(models.Model):
-    ingredient_name = models.CharField(max_length=250)
+    ingredient_name = models.CharField(max_length=250,unique=True)
 
     def __str__(self):
         return  self.ingredient_name
@@ -55,14 +55,14 @@ class QuantityUnitNecessity(models.Model):
         return "{quantity}  {unit}  {necessity}".format(necessity=self.necessity, quantity=self.quantity,
                                                         unit=self.unit)
 class Kitchen(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250,unique=True)
     description = models.TextField(max_length=750)
 
     def __str__(self):
         return self.name
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250,unique=True)
     time = models.ForeignKey(Time, on_delete=models.CASCADE)
     number_of_persons = models.IntegerField()
     kitchen = models.ForeignKey(Kitchen, on_delete=models.CASCADE)
