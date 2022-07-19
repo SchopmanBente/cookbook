@@ -1,0 +1,16 @@
+
+cookbook/__pycache__/*
+recipes/migrations/*
+recipes/__pycache__/*
+db.sqlite3
+docs/base.txt
+.idea/
+cookbook/.idea/*
+cookbook/.coverage
+cookbook/.env
+cookbook/cookbook/__pycache__/*
+cookbook/recipes/__pycache__/*
+cookbook/recipes/migrations/*
+cookbook/recipes/tests/__pycache__/*
+cookbook/*.pem
+docs/Untitled 1.odt
