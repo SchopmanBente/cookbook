@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from django_otp.admin import OTPAdminSite
 
@@ -23,3 +24,4 @@ urlpatterns = [
     path('', include('recipes.urls')),
     path('change_cookbook/', admin.site.urls),
 ]
+urlpatterns += staticfiles_urlpatterns()
