@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'security',
     "django_extensions",
-     'django_password_validators',
-     'django_password_validators.password_history',
 ]
 
 MIDDLEWARE = [
@@ -120,12 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
-    {
-        'NAME': 'django_password_validators.password_history.password_validation.UniquePasswordsValidator',
-        'OPTIONS': {
-            'last_passwords': 5  # Only the last 5 passwords entered by the user
-        }
-    },
+
 ]
 
 
@@ -159,7 +152,6 @@ SECURE_SSL_REDIRECT = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
