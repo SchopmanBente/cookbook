@@ -145,13 +145,12 @@ STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+SECURE_HSTS_PRELOAD = False
+SECURE_SSL_REDIRECT = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
