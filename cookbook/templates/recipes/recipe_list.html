@@ -1,13 +1,17 @@
 {% extends 'recipes/base.html' %}
 {% load static %}
 {% block title %}
- <title> Recepten </title>
+<title> Recepten </title>
 {% endblock %}
 {% block content %}
-    <h2>Recepten</h2>
-    <ul>
-        {% for recipe in object_list %}
-            <li><a href="{% url 'recipes:detail'  recipe.pk %}">{{ recipe.name }}</a></li>
-        {% endfor %}
-    </ul>
+<form method="get">
+    {{ filter.form }}
+    <button type="submit" class="btn btn-primary"> Search</button>
+</form>
+<h2>Recepten</h2>
+<ul>
+    {% for recipe in filter.qs %}
+    <li><a href="{% url 'recipes:detail'  recipe.pk %}">{{ recipe.name }}</a></li>
+    {% endfor %}
+</ul>
 {% endblock %}
