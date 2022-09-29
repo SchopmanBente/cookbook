@@ -4,24 +4,18 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView
 
 from .models import Recipe
+from .filters import RecipeFilter
 
 # Create your views here.
-class Recipes(ListView):
+class RecipeListView(ListView):
     model = Recipe
+    template_name =  "recipes/recipe_list.html"
 
-def get(request, pk, format=None):
-    try:
-        recipe = Recipe.objects.get(id=pk)
-        ingredients = recipe.ingredients.all()
-        necessities = recipe.necessities.all()
-    except Recipe.DoesNotExist:
-        raise Http404("Recipe does not exist")
-    return render(request, "recipes/recipe_detail.html",
-                  {"name": recipe.name,
-                   "time": recipe.time,
-                   "number_of_persons": recipe.number_of_persons,
-                   "kitchen": recipe.kitchen,
-                   "necessities": necessities,
-                   "ingredients": ingredients,
-                   "preparation": recipe.preparation,
-                   })
+    def get_context_data(self,  **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = RecipeFilter(self.request.GET, queryset=self.get_queryset())
+        return context
+
+class RecipeDetailView(DetailView):
+    model = Recipe
+    template_name = "recipes/recipe_detail.html"
